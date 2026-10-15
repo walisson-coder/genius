@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cores do projeto */
+:root {
+    --verde: #22c55e;
+    --vermelho: #ef4444;
+    --amarelo: #eab308;
+    --azul: #3b82f6;
+    --fundo: #15152a;
+    --caixa: #1f1f3d;
+    --texto: #ffffff;
+    --cinza: #a0a0c0;
+}
+
+.verde {
+    background-color: var(--verde);
+}
+
+.vermelho {
+    background-color: var(--vermelho);
+}
+
+.amarelo {
+    background-color: var(--amarelo);
+}
+
+.azul {
+    background-color: var(--azul);
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--texto);
+    text-align: center;
+}
+
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.escondida {
+    display: none;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 15px;
+    margin-top: 16px;
+}
+
+p {
+    color: var(--cinza);
+    line-height: 1.5;
+}
+
+.aviso {
+    font-size: 13px;
+}
+
+/* Botões */
+.btn {
+    background-color: var(--azul);
+    color: var(--texto);
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+}
+
+.btn-simples {
+    background: none;
+    border: none;
+    color: var(--cinza);
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Barra com a pontuação e o tempo */
+.barra {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    color: var(--cinza);
+}
+
+.barra b {
+    color: var(--texto);
+    font-size: 20px;
+}
+
+/* Os quatro botões */
+.grade {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.pad {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    opacity: 0.4;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.pad.aceso {
+    opacity: 1;
+}
+
+/* Tela de fim de jogo */
+#resultado {
+    font-size: 64px;
+    font-weight: bold;
+    color: var(--texto);
+}
+
+#apelido {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    text-align: center;
+    padding: 14px;
+    border: 2px solid var(--cinza);
+    border-radius: 8px;
+    background-color: var(--fundo);
+    color: var(--texto);
+}
+
+#lista {
+    list-style: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+#lista li {
+    background-color: var(--caixa);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+#lista li.voce {
+    background-color: var(--azul);
+}
+
+/* Tela do código */
+pre {
+    background-color: #000000;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    max-width: 360px;
+    overflow-x: auto;
+    text-align: left;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--verde);
+}
+
+.creditos {
+    font-size: 12px;
+    max-width: 360px;
+}
+
