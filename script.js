@@ -1,6 +1,6 @@
 /* Gênius */
 
-const TEMPO_LIMITE = 60;
+const TEMPO_LIMITE = 120;
 const NOTAS = [330, 277, 220, 165];
 const URL_PLANILHA = 'https://script.google.com/macros/s/AKfycbwvZAz6DxSVKT99lM7xZEK6tqFrTfRQ6zhHZZq7R3TiPEa0K-kRTxriX7Td_yVghPlkug/exec';
 
@@ -25,6 +25,7 @@ const mensagem = document.querySelector('#status');
 const campoApelido = document.querySelector('#apelido');
 const btnSalvar = document.querySelector('#btn-salvar');
 const avisoRanking = document.querySelector('#aviso-ranking');
+const telaCarregando = document.querySelector('#carregando');
 
 
 /* ---------- TELAS ---------- */
@@ -34,6 +35,15 @@ function mostrarTela(id) {
         tela.classList.add('escondida');
     });
     document.querySelector(id).classList.remove('escondida');
+}
+
+
+function mostrarCarregando() {
+    telaCarregando.classList.remove('escondida');
+}
+
+function esconderCarregando() {
+    telaCarregando.classList.add('escondida');
 }
 
 
@@ -246,15 +256,34 @@ function desenharRanking(lista) {
 
     if (!lista || lista.length === 0) {
         const vazio = document.createElement('li');
+        vazio.classList.add('vazio');
         vazio.textContent = 'Seja o primeiro do ranking!';
         ol.appendChild(vazio);
         return;
     }
 
-    lista.forEach(function (item, i) {
+    // mostra do 1 ao 10
+    const dezPrimeiros = lista.slice(0, 10);
+
+    dezPrimeiros.forEach(function (item, i) {
         const apelido = limparApelido(item.apelido);
         const li = document.createElement('li');
-        li.textContent = (i + 1) + '. ' + apelido + ' - ' + item.pontuacao;
+
+        const posicao = document.createElement('span');
+        posicao.classList.add('posicao');
+        posicao.textContent = i + 1;
+
+        const nome = document.createElement('span');
+        nome.classList.add('nome');
+        nome.textContent = apelido;
+
+        const pontuacao = document.createElement('span');
+        pontuacao.classList.add('pontuacao');
+        pontuacao.textContent = item.pontuacao;
+
+        li.appendChild(posicao);
+        li.appendChild(nome);
+        li.appendChild(pontuacao);
 
         if (apelido === meuApelido) {
             li.classList.add('voce');
@@ -265,6 +294,8 @@ function desenharRanking(lista) {
 }
 
 async function mostrarRanking() {
+    mostrarCarregando();
+
     const daPlanilha = await buscarDaPlanilha();
 
     if (daPlanilha) {
@@ -276,6 +307,7 @@ async function mostrarRanking() {
     }
 
     mostrarTela('#tela-ranking');
+    esconderCarregando();
 }
 
 async function salvarPontuacao() {
@@ -287,8 +319,11 @@ async function salvarPontuacao() {
     });
 
     btnSalvar.disabled = true;
+    mostrarCarregando();
+
     await enviarParaPlanilha(meuApelido);
     await mostrarRanking();
+
     btnSalvar.disabled = false;
 }
 
@@ -307,10 +342,6 @@ document.querySelector('#btn-salvar').addEventListener('click', salvarPontuacao)
 document.querySelector('#btn-pular').addEventListener('click', function () {
     meuApelido = '';
     mostrarRanking();
-});
-
-document.querySelector('#btn-codigo').addEventListener('click', function () {
-    mostrarTela('#tela-codigo');
 });
 
 document.querySelectorAll('.btn-novo').forEach(function (botao) {

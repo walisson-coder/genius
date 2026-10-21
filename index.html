@@ -14,7 +14,7 @@
     <section id="tela-inicio" class="tela">
         <h1>Gênius</h1>
         <p>Olhe a sequência de cores e repita na mesma ordem.</p>
-        <p>Você tem 1 minuto.</p>
+        <p>Você tem 2 minutos.</p>
         <button id="btn-iniciar" class="btn">Começar</button>
     </section>
 
@@ -22,7 +22,7 @@
     <section id="tela-jogo" class="tela escondida">
         <div class="barra">
             <span>Sequência: <b id="pontos">0</b></span>
-            <span>Tempo: <b id="tempo">1:00</b></span>
+            <span>Tempo: <b id="tempo">2:00</b></span>
         </div>
 
         <div class="grade">
@@ -55,36 +55,14 @@
         <p id="aviso-ranking" class="aviso"></p>
         <ol id="lista"></ol>
 
-        <!-- <button id="btn-codigo" class="btn">Como isso foi feito?</button> -->
-        <button class="btn-simples btn-novo">Jogar de novo</button>
+        <button class="btn btn-novo">Voltar ao início</button>
     </section>
 
-    <!-- TELA 5: O CÓDIGO DO JOGO -->
-    <!-- <section id="tela-codigo" class="tela escondida">
-        <h2>O código do jogo</h2>
-
-        <h3>1. O computador sorteia a cor</h3>
-        <pre><code>sequencia.push(Math.floor(Math.random() * 4));</code></pre>
-
-        <h3>2. O jogo confere se você acertou</h3>
-        <pre><code>if (cor === sequencia[posicao]) {
-    posicao++;      // acertou
-} else {
-    perder();       // errou
-}</code></pre>
-
-        <h3>3. O cronômetro</h3>
-        <pre><code>setInterval(function () {
-    segundos--;
-}, 1000);</code></pre>
-
-        <p class="creditos">
-            Feito com HTML, CSS e JavaScript por alunos do curso de Sistemas de Informação /
-            Análise e Desenvolvimento de Sistemas da Unifacear.
-        </p>
-
-        <button class="btn btn-novo">Jogar de novo</button>
-    </section> -->
+    <!-- CARREGANDO -->
+    <div id="carregando" class="carregando escondida">
+        <div class="girador"></div>
+        <p>Carregando o ranking...</p>
+    </div>
 
     <script src="script.js"></script>
 </body>
